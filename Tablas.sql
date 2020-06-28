@@ -20,7 +20,7 @@ nombre 		VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE Miembro(
-cod_miembro	I		NTEGER NOT NULL PRIMARY KEY,
+cod_miembro			INTEGER NOT NULL PRIMARY KEY,
 nombre				VARCHAR(100) NOT NULL,
 apellido			VARCHAR(100) NOT NULL,
 edad				INTEGER NOT NULL,
@@ -51,7 +51,7 @@ medalla 	VARCHAR(20) NOT NULL UNIQUE
 CREATE TABLE Medallero(
 PAIS_cod_pais 			INTEGER NOT NULL PRIMARY KEY,
 cantidad_medallas 		INTEGER NOT NULL,
-TIPO_MEDALLA_cod_tipo 	INTEGER NOT NULL,
+TIPO_MEDALLA_cod_tipo 	INTEGER NOT NULL PRIMARY KEY,
 FOREIGN KEY (PAIS_cod_pais) REFERENCES Pais(cod_pais),
 FOREIGN KEY (TIPO_MEDALLA_cod_tipo) REFERENCES Tipo_Medalla(cod_tipo)
 );
@@ -88,7 +88,7 @@ CREATE TABLE Evento(
 cod_evento 								INTEGER NOT NULL PRIMARY KEY,
 fecha 									DATE NOT NULL,
 ubicacion 								VARCHAR(50) NOT NULL,
-hora 									DATE NOT NULL,
+hora 									TIME NOT NULL,
 DISCIPLINA_cod_disciplina 				INTEGER NOT NULL,
 TIPO_PARTICIPACION_cod_participacion 	INTEGER NOT NULL,
 CATEGORIA_cod_categoria 				INTEGER NOT NULL,
@@ -98,8 +98,8 @@ FOREIGN KEY (CATEGORIA_cod_categoria) REFERENCES Categoria(cod_categoria)
 );
 
 CREATE TABLE Evento_Atleta(
-ATLETA_cod_atleta 	INTEGER NOT NULL,
-EVENTO_cod_evento 	INTEGER NOT NULL,
+ATLETA_cod_atleta 	INTEGER NOT NULL PRIMARY KEY,
+EVENTO_cod_evento 	INTEGER NOT NULL PRIMARY KEY,
 FOREIGN KEY (ATLETA_cod_atleta) REFERENCES Atleta(cod_atleta),
 FOREIGN KEY (EVENTO_cod_evento) REFERENCES Evento(cod_evento)
 );
