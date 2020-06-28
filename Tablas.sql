@@ -1,0 +1,35 @@
+--Crearemos las tablas correspondientes
+CREATE TABLE Profesion(
+cod_prof	INTEGER NOT NULL PRIMARY KEY,
+nombre		VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Pais(
+cod_pais	INTEGER NOT NULL PRIMARY KEY,
+nombre		VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Puesto(
+cod_puesto	INTEGER NOT NULL PRIMARY KEY,
+nombre 		VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Departamento(
+cod_depto	INTEGER NOT NULL PRIMARY KEY,
+nombre 		VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Miembro(
+cod_miembro	I		NTEGER NOT NULL PRIMARY KEY,
+nombre				VARCHAR(100) NOT NULL,
+apellido			VARCHAR(100) NOT NULL,
+edad				INTEGER NOT NULL,
+telefono			INTEGER,
+residencia			VARCHAR(100),
+PAIS_cod_pais 		INTEGER,
+PROFESION_cod_prof	INTEGER
+);
+
+CREATE TABLE Puesto_Miembro(
+MIEMBRO_cod_miembro INTEGER NOT NULL
+)
