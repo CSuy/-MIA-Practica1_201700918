@@ -8,12 +8,12 @@ CREATE TABLE Pais(
 cod_pais	INTEGER NOT NULL PRIMARY KEY,
 nombre		VARCHAR(50) NOT NULL UNIQUE
 );
-
+--no
 CREATE TABLE Puesto(
 cod_puesto	INTEGER NOT NULL PRIMARY KEY,
 nombre 		VARCHAR(50) NOT NULL UNIQUE
 );
-
+--no
 CREATE TABLE Departamento(
 cod_depto	INTEGER NOT NULL PRIMARY KEY,
 nombre 		VARCHAR(50) NOT NULL UNIQUE
@@ -31,7 +31,7 @@ PROFESION_cod_prof	INTEGER,
 FOREIGN KEY (PAIS_cod_pais ) REFERENCES Pais(cod_pais),
 FOREIGN KEY (PROFESION_cod_prof) REFERENCES Profesion(cod_prof)
 );
-
+--no
 CREATE TABLE Puesto_Miembro(
 MIEMBRO_cod_miembro 	INTEGER NOT NULL PRIMARY KEY,
 PUESTO_cod_puesto 		INTEGER NOT NULL PRIMARY KEY,
@@ -61,7 +61,7 @@ cod_disciplina 	INTEGER NOT NULL PRIMARY KEY,
 nombre 			VARCHAR(50) NOT NULL,
 descripcion 	VARCHAR(150)
 );
-
+--no
 CREATE TABLE Atleta(
 cod_atleta 					INTEGER NOT NULL PRIMARY KEY,
 nombre 						VARCHAR(50) NOT NULL,
