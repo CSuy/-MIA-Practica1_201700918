@@ -1,5 +1,5 @@
 --creacion de las consultas
-SET DATASTYLE TO 'European';
+SET DATESTYLE TO 'European';
 
 
 -- #2
@@ -21,14 +21,14 @@ CHECK ( fecha_hora >= '24/07/2020 09:00:00' AND fecha_hora <= '09/08/2020 20:00:
 CREATE TABLE Sede(
 cod_sede	INTEGER,
 sede 		VARCHAR(50) NOT NULL,
-CONSTRAINT PK_cod_sede PRIMARY KEY (cod_sede)
+CONSTRAINT PK_sede PRIMARY KEY (cod_sede)
 );
 
 ALTER TABLE Evento
-ALTER COLUMN ubicacion TYPE INTEGER;
+ALTER COLUMN ubicacion TYPE INTEGER USING ubicacion::INTEGER;
 
 ALTER TABLE Evento
-ADD CONSTRAINT FK_Ubicacion_Sede FOREIGN KEY (ubicacion) REFERENCES Sede(cod_sede);
+ADD CONSTRAINT FK_ubicacion_Sede FOREIGN KEY (ubicacion) REFERENCES Sede(cod_sede);
 
 -- #5
 ALTER TABLE Miembro
@@ -103,15 +103,26 @@ INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina,
 INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina, TIPO_PARTICIPACION_cod_participacion, CATEGORIA_cod_categoria) VALUES (4, '01/08/2020 12:15:00', 3, 2, 1, 1);
 INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina, TIPO_PARTICIPACION_cod_participacion, CATEGORIA_cod_categoria) VALUES (5, '24/07/2020 19:35:00', 3, 2, 3, 1);
 
+SELECT * FROM Pais;
+SELECT * FROM Profesion;
+SELECT * FROM Miembro;
+SELECT * FROM Disciplina;
+SELECT * FROM Tipo_Medalla;
+SELECT * FROM Categoria;
+SELECT * FROM Tipo_Participacion;
+SELECT * FROM Medallero;
+SELECT * FROM Sede;
+SELECT * FROM Evento;
+
 -- #7
 ALTER TABLE Pais 
-DROP CONSTRAINT UQ_nombre;
+DROP CONSTRAINT UQ_nombre_pais;
 
 ALTER TABLE Tipo_Medalla
-DROP CONSTRAINT UQ_medalla;
+DROP CONSTRAINT UQ_medalla_tipo_medalla;
 
 ALTER TABLE Departamento
-DROP CONSTRAINT UQ_nombre;
+DROP CONSTRAINT UQ_nombre_departamento;
 
 -- #8
 ALTER TABLE Atleta
@@ -130,15 +141,13 @@ ALTER TABLE Costo_Evento
 ALTER COLUMN tarifa TYPE NUMERIC(2);
 
 -- #10
-DELETE FROM Medallero
-WHERE TIPO_MEDALLA_cod_tipo = 4;
 
 DELETE FROM Tipo_Medalla
 WHERE cod_tipo = 4;
 
 -- #11
 DROP TABLE Costo_Evento;
-DROP TABLE Televisoras;
+DROP TABLE Televisora;
 
 -- #12
 DELETE FROM Disciplina;
