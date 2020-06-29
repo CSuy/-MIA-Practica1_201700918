@@ -19,8 +19,9 @@ CHECK ( fecha_hora >= '24/07/2020 09:00:00' AND fecha_hora <= '09/08/2020 20:00:
 
 -- #4
 CREATE TABLE Sede(
-cod_sede	INTEGER PRIMARY KEY,
-sede 		VARCHAR(50) NOT NULL
+cod_sede	INTEGER,
+sede 		VARCHAR(50) NOT NULL,
+CONSTRAINT PK_cod_sede PRIMARY KEY (cod_sede)
 );
 
 ALTER TABLE Evento
@@ -89,3 +90,39 @@ INSERT INTO Medallero(PAIS_cod_pais, cantidad_medallas, TIPO_MEDALLA_cod_tipo) V
 INSERT INTO Medallero(PAIS_cod_pais, cantidad_medallas, TIPO_MEDALLA_cod_tipo) VALUES (1, 2, 1);
 INSERT INTO Medallero(PAIS_cod_pais, cantidad_medallas, TIPO_MEDALLA_cod_tipo) VALUES (1, 5, 4);
 INSERT INTO Medallero(PAIS_cod_pais, cantidad_medallas, TIPO_MEDALLA_cod_tipo) VALUES (5, 7, 2);
+
+INSERT INTO Sede(cod_sede, sede) VALUES (1,'Gimnasion Metropolitano de Tokio');
+INSERT INTO Sede(cod_sede, sede) VALUES (2,'Jardin del Palacio Imperial de Tokio');
+INSERT INTO Sede(cod_sede, sede) VALUES (3,'Gimnasion Nacional Yoyogi');
+INSERT INTO Sede(cod_sede, sede) VALUES (4,'Nippon Budokan');
+INSERT INTO Sede(cod_sede, sede) VALUES (5,'Estadio Olimpico');
+
+INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina, TIPO_PARTICIPACION_cod_participacion, CATEGORIA_cod_categoria) VALUES (1, '24/07/2020 11:00:00', 3, 2, 2, 1);
+INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina, TIPO_PARTICIPACION_cod_participacion, CATEGORIA_cod_categoria) VALUES (2, '26/07/2020 10:30:00', 1, 6, 1, 3);
+INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina, TIPO_PARTICIPACION_cod_participacion, CATEGORIA_cod_categoria) VALUES (3, '30/07/2020 18:45:00', 5, 7, 1, 2);
+INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina, TIPO_PARTICIPACION_cod_participacion, CATEGORIA_cod_categoria) VALUES (4, '01/08/2020 12:15:00', 3, 2, 1, 1);
+INSERT INTO Evento(cod_evento, fecha_hora, ubicacion, DISCIPLINA_cod_disciplina, TIPO_PARTICIPACION_cod_participacion, CATEGORIA_cod_categoria) VALUES (5, '24/07/2020 19:35:00', 3, 2, 3, 1);
+
+-- #7
+ALTER TABLE Pais 
+DROP CONSTRAINT UQ_nombre;
+
+ALTER TABLE Tipo_Medalla
+DROP CONSTRAINT UQ_medalla;
+
+ALTER TABLE Departamento
+DROP CONSTRAINT UQ_nombre;
+
+-- #8
+ALTER TABLE Atleta
+DROP COLUMN DISCIPLINA_cod_disciplina;
+
+CREATE TABLE Disciplina_Atleta(
+ATLETA_cod_atleta INTEGER,
+DISCIPLINA_cod_disciplina INTEGER,
+CONSTRAINT FK_disciplina_atleta FOREIGN KEY (ATLETA_cod_atleta) REFERENCES Atleta(cod_atleta),
+CONSTRAINT FK_disciplina_disciplina FOREIGN KEY (DISCIPLINA_cod_disciplina) REFERENCES Disciplina(cod_disciplina),
+CONSTRAINT PK_atleta_disciplina PRIMARY KEY (ATLETA_cod_atleta, DISCIPLINA_cod_disciplina)
+);
+
+-- #9
