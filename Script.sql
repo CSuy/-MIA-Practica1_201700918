@@ -126,3 +126,38 @@ CONSTRAINT PK_atleta_disciplina PRIMARY KEY (ATLETA_cod_atleta, DISCIPLINA_cod_d
 );
 
 -- #9
+ALTER TABLE Costo_Evento
+ALTER COLUMN tarifa TYPE NUMERIC(2);
+
+-- #10
+DELETE FROM Medallero
+WHERE TIPO_MEDALLA_cod_tipo = 4;
+
+DELETE FROM Tipo_Medalla
+WHERE cod_tipo = 4;
+
+-- #11
+DROP TABLE Costo_Evento;
+DROP TABLE Televisoras;
+
+-- #12
+DELETE FROM Disciplina;
+
+-- #13
+UPDATE Miembro SET telefono = 55464601
+WHERE nombre = 'Laura' AND apellido = 'Cunha Silva';
+
+UPDATE Miembro SET telefono = 91514243
+WHERE nombre = 'Jeule' AND apellido = 'Villalpando';
+
+UPDATE Miembro SET telefono = 920686670
+WHERE nombre = 'Scott' AND apellido = 'Mitchell';
+
+-- #14
+ALTER TABLE Atleta
+ADD COLUMN Fotografia VARCHAR(150);
+
+--#15
+ALTER TABLE Atleta
+ADD CONSTRAINT restriccion_edad 
+CHECK (edad < 25);
